@@ -46,6 +46,14 @@ def create():
     result = {'success': True, 'response': 'Done'}
     return jsonify(result)
 
+@app.route("/edit", methods=['PUT'])
+def edit():
+    """ recieves post requests to add new task """
+    data = request.get_json()
+    db_helper.update_task_entry(data['id'],data['description'])
+    result = {'success': True, 'response': 'Done'}
+    return jsonify(result)
+
 
 @app.route("/fetch-max-id",methods=['GET'])
 def fetch_max_id():
